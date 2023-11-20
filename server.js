@@ -1,29 +1,29 @@
-import * as dotenv from 'dotenv';
+import "express-async-errors";
+import * as dotenv from "dotenv";
 dotenv.config();
 const port = process.env.PORT || 5100;
 import express from "express";
 const app = express();
 import morgan from "morgan";
+import mongoose from "mongoose";
 
 //routers
-import jobRouter from './routes/jobRouter.js';
+import jobRouter from "./routes/jobRouter.js";
 
-
-
-if(process.env.NODE_ENV === 'development'){ 
-    app.use(morgan('dev'));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
 }
 app.use(express.json());
 
-app.get('/',(req,res)=>{
-    res.send('This is a home page');
+app.get("/", (req, res) => {
+  res.send("This is a home page");
 });
 
-app.post('/',(req,res)=>{
-    res.json({message:'data received',data:req.body});
+app.post("/", (req, res) => {
+  res.json({ message: "data received", data: req.body });
 });
 
-app.use('/api/v1/jobs',jobRouter);   
+app.use("/api/v1/jobs", jobRouter);
 // //GET all jobs
 // app.get('/api/v1/jobs',)
 
@@ -38,15 +38,20 @@ app.use('/api/v1/jobs',jobRouter);
 
 // //DELETE Job
 // app.delete("/api/v1/jobs/:id",)
-app.use('*',(req,res)=>{
-    res.status(404).json({msg:'not found'});
-})
-app.use((err,req,res,next)=>{
-    console.log(err); 
-    res.status(500).json({msg:'something went wromg'});
-})
+app.use("*", (req, res) => {
+  res.status(404).json({ msg: "not found" });
+});
+app.use((err, req, res, next) => {
+  console.log(err);
+  res.status(500).json({ msg: "something went wromg" });
+});
 
-
-app.listen(port,()=>{
+try {
+  await mongoose.connect(process.env.MONGO_URL);
+  app.listen(port, () => {
     console.log(`http://localhost:${port}`);
-})
+  });
+} catch (error) {
+  console.log(error);
+  process.exit(1);
+}
