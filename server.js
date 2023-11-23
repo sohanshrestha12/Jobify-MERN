@@ -9,6 +9,7 @@ import mongoose from "mongoose";
 
 //routers
 import jobRouter from "./routes/jobRouter.js";
+import authRouter from "./routes/authRouter.js";
 
 import errorHandlerMiddleware from "./middlewares/errorHandlerMiddleware.js";
 
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/jobs", jobRouter);
+app.use("/api/v1/auth",authRouter);
 // //GET all jobs
 // app.get('/api/v1/jobs',)
 

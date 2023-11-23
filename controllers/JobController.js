@@ -1,6 +1,5 @@
 import Job from '../models/JobModel.js';
 import {StatusCodes} from 'http-status-codes';
-import { NotFoundError } from '../errors/customErrors.js';
 
 export const getAllJobs = async (req, res) => {
   const jobs = await Job.find({});
