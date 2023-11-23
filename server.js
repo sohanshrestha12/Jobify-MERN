@@ -21,10 +21,6 @@ app.get("/", (req, res) => {
   res.send("This is a home page");
 });
 
-app.post("/", (req, res) => {
-  res.json({ message: "data received", data: req.body });
-});
-
 app.use("/api/v1/jobs", jobRouter);
 // //GET all jobs
 // app.get('/api/v1/jobs',)
