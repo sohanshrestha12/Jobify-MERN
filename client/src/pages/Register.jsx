@@ -2,10 +2,20 @@ import React from "react";
 import { Form, redirect, useNavigation, Link } from "react-router-dom";
 import { Logo, FormRow } from "../components";
 import Wrapper from "../assets/wrappers/RegisterAndLoginPage";
+import customFetch from "../utils/customFetch";
 
-export const action = async (data) => {
-  console.log(data);
-  return null;
+export const action = async ({request}) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  try {
+    await customFetch.post('auth/register',data);
+    return redirect('/login');
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+
 };
 const Register = () => {
   return (
@@ -22,7 +32,7 @@ const Register = () => {
         />
         <FormRow type="text" name="location" defaultValue="earth" />
         <FormRow type="email" name="email" defaultValue="abc@gmail.com" />
-        <FormRow type="password" name="password" defaultValue="abc" />
+        <FormRow type="password" name="password" defaultValue="aaaaaaaa" />
         <button type="submit" className="btn btn-block">
           submit
         </button>
