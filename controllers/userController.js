@@ -3,9 +3,11 @@ import User from "../models/UserModel.js";
 import Job from "../models/JobModel.js";
 
 export const getCurrentUser = async (req,res)=>{
-    const user = await User.findOne({_id:req.user.userId}); 
-    const userWithoutPassword = user.toJSON();
-    res.status(StatusCodes.OK).json({userWithoutPassword});
+    const loggedInUser = await User.findOne({_id:req.user.userId}); 
+    // const userWithoutPassword = user.toJSON();
+    // res.status(StatusCodes.OK).json({userWithoutPassword});
+    const user = loggedInUser.toJSON();
+    res.status(StatusCodes.OK).json({user});
 }
 
 export const getApplicationStats = async (req,res)=>{
