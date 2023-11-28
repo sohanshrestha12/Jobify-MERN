@@ -5,8 +5,9 @@ import { useState } from "react";
 import { useDashboardContext } from "../pages/DashboardLayout";
 
 const LogoutContainer = () => {
-    const [showLogout,setShowLogout] = useState(false);
-    const {user,logoutUser} = useDashboardContext();
+  const [showLogout,setShowLogout] = useState(false);
+  const {user,setUser} = useDashboardContext();
+  const {logoutUser} = useDashboardContext();
   return (
     <Wrapper>
       <button
@@ -22,7 +23,7 @@ const LogoutContainer = () => {
         <FaCaretDown/>
       </button>
       <div className={showLogout?'dropdown show-dropdown':'dropdown'}>
-        <button type='button' className='dropdown-btn'>logout</button>
+        <button type='button' onClick={logoutUser} className='dropdown-btn'>logout</button>
       </div>
     </Wrapper>
   );
