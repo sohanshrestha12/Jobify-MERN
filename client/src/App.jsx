@@ -13,6 +13,7 @@ import {
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/DashboardLayout";
+import AddJob from "./pages/AddJob";
 
 const checkDefaultTheme = () => {
   const isDarkTheme = localStorage.getItem("darkTheme") === "true";
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
         element: <DashboardLayout isDarkThemeEnabled={isDarkThemeEnabled} />,
         loader:dashboardLoader,
         children: [
+          {
+            index:true,
+            element:<AddJob/>
+          },
           {
             path: "admin",
             element: <Admin />,
