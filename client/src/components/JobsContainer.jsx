@@ -13,7 +13,6 @@ const JobsContainer = () => {
       </Wrapper>
     );
   }
-  console.log(data);
   return (
     <Wrapper>
       <div className="jobs">

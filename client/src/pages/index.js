@@ -7,3 +7,4 @@ export { default as DashboardLayout } from "./DashboardLayout";
 export { default as Admin } from "./Admin";
 export { default as AllJob } from "./AllJob";
 export { default as AddJob } from "./AddJob";
+export { default as EditJob } from "./EditJob";
