@@ -11,6 +11,7 @@ import {
   AllJob,
   AddJob,
   EditJob,
+  Profile,
 } from "./pages";
 
 import { action as registerAction } from "./pages/Register";
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
           {
             path:'delete-job/:id',
             action:deleteJobAction,
+          },
+          {
+            path:'profile',
+            element:<Profile/>,
           }
         ],
       },
