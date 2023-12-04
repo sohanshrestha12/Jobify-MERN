@@ -2,6 +2,25 @@ import React from "react";
 import Wrapper from "../assets/wrappers/DashboardFormPage";
 import { Form, useNavigation, useOutletContext } from "react-router-dom";
 import { FormRow } from "../components";
+import { toast } from "react-toastify";
+import customFetch from "../utils/customFetch";
+
+export const action = async({request})=>{
+    const formData = await request.formData();
+
+    const file = formData.get('avatar');
+    if(file && file.size > 500000){
+        toast.error('Image size too large');
+        return null;
+    }
+    try {
+        await customFetch.patch('/users/update-user',formData);
+        toast.success('Profile upload successfully');
+    } catch (error) {
+        toast.error(error?.response?.data);
+    }
+    return null;
+}
 
 const Profile = () => {
   const { user } = useOutletContext();
