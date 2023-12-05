@@ -18,7 +18,6 @@ export const loader = async()=>{
 
 const Admin = () => {
   const {users,jobs} = useLoaderData();
-  console.log(users,jobs)
   return (
     <Wrapper>
       <StatItem title='current users' count={users} color='#e9b949' bcg='#fcefc7' icon={<FaSuitcaseRolling/>} />
