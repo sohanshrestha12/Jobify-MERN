@@ -1,6 +1,6 @@
 import {Router} from 'express';
 const router = Router()
-import {getAllJobs,getJob,createJob,updateJob,deleteJob} from '../controllers/JobController.js';
+import {getAllJobs,getJob,createJob,updateJob,deleteJob,showStats} from '../controllers/JobController.js';
 import { validateJobInput,validateIdParam } from '../middlewares/validationMiddleware.js';
 import { checkForTestUser } from '../middlewares/authMiddleware.js';
 
@@ -8,6 +8,8 @@ import { checkForTestUser } from '../middlewares/authMiddleware.js';
 // router.post('/',createJob);
 
 router.route('/').get(getAllJobs).post(checkForTestUser,validateJobInput,createJob);
+router.route('/stats').get(showStats);
+
 router
   .route("/:id")
   .get( validateIdParam, getJob)
