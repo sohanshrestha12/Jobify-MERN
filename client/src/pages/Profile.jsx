@@ -21,7 +21,7 @@ export const action = async({request})=>{
     }
     return null;
 }
-
+//profile
 const Profile = () => {
   const { user } = useOutletContext();
   const { name, lastName, email, location } = user;
