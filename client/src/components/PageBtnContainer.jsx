@@ -84,7 +84,6 @@ const PageBtnContainer = () => {
         activeClass: currentPage === numOfPages,
       })
     );
-    console.log(pageButtons)
     return pageButtons;
   };
   return (
