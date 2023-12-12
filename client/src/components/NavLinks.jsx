@@ -1,5 +1,5 @@
 import React from 'react'
-import links from '../utils/links';
+import links from '../utils/Links';
 import { NavLink } from 'react-router-dom';
 import { useDashboardContext } from '../pages/DashboardLayout';
 
